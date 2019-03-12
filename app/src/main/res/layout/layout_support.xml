@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <TextView
+            android:id="@+id/callId"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Llamar"
+            android:padding="10dp"
+            android:backgroundTint="@android:color/white"
+            android:gravity="start|center_vertical"
+            android:textSize="16sp" />
+
+    <TextView
+            android:id="@+id/msgId"
+            android:layout_width="match_parent"
+            android:text="Mensaje"
+            android:padding="10dp"
+            android:layout_height="48dp"
+            android:backgroundTint="@android:color/white"
+            android:gravity="start|center_vertical"
+            android:textSize="16sp" />
+
+
+</LinearLayout>

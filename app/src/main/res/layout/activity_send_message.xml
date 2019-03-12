@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorForm"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorWhite"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/labelPersonId"
+                android:layout_width="match_parent"
+                android:layout_height="22dp"
+                android:textSize="11dp"
+                android:background="@color/colorForm"
+                android:layout_gravity="center"
+                android:text='Mensaje'
+                android:paddingLeft="20dp"
+                android:textAlignment="textStart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="RtlCompat" />
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/temaId"
+                android:layout_width="295dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:hint="Tema"
+                android:inputType="text"
+                android:textSize="14sp"
+                android:layout_gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/labelPersonId"
+                app:met_baseColor="@android:color/black"
+                app:met_floatingLabel="highlight"
+                app:met_floatingLabelText="Tema"
+                app:met_primaryColor="?colorPrimary"
+                app:met_singleLineEllipsis="false" />
+
+            <TextView
+                android:id="@+id/labelPerson"
+                android:layout_width="match_parent"
+                android:layout_height="22dp"
+                android:textSize="11dp"
+                android:background="@color/colorForm"
+                android:layout_gravity="center"
+                android:text='Selecciona destinatarios'
+                android:paddingLeft="20dp"
+                android:textAlignment="textStart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="RtlCompat" />
+
+            <com.androidbuts.multispinnerfilter.MultiSpinnerSearch
+                android:id="@+id/viewMultiSpinner"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_width="295dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:hint="Correo electronico"
+                android:inputType="textEmailAddress"
+                android:textSize="14sp"
+                android:layout_gravity="center"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"></com.androidbuts.multispinnerfilter.MultiSpinnerSearch>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
+            android:paddingBottom="10dp"
+            android:background="@color/colorWhite"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/labelPersonId2"
+                android:layout_width="match_parent"
+                android:layout_height="22dp"
+                android:paddingLeft="20dp"
+                android:textSize="11dp"
+                android:background="@color/colorForm"
+                android:layout_gravity="center"
+                android:text='Escribe aqui tu mensaje'
+                android:textAlignment="textStart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="RtlCompat" />
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/messageId"
+                android:layout_width="295dp"
+                android:layout_height="150dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:hint="escribe aqui tu mensaje"
+                android:inputType="textMultiLine"
+                android:gravity="top"
+                android:textSize="14sp"
+                android:layout_gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/labelPersonId"
+                app:met_baseColor="@android:color/black"
+                app:met_floatingLabel="highlight"
+                app:met_floatingLabelText="Mensaje"
+                app:met_primaryColor="?colorPrimary"
+                app:met_singleLineEllipsis="false" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorWhite"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:id="@+id/layout_loading"
+                android:background="@color/colorForm"
+                android:visibility="gone"
+                android:layout_height="wrap_content">
+                <ProgressBar
+                    android:id="@+id/progress_loader"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/labelPersonId4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="22dp"
+                    android:paddingLeft="20dp"
+                    android:textSize="11dp"
+                    android:background="@color/colorForm"
+                    android:layout_gravity="center"
+                    android:text='Subiendo archivos ...'
+                    android:textAlignment="textStart"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="RtlCompat" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:id="@+id/layout_loading2"
+                android:background="@color/colorForm"
+                android:visibility="gone"
+                android:layout_height="wrap_content">
+                <ProgressBar
+                    android:id="@+id/progress_loader2"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/labelPersonId5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="22dp"
+                    android:paddingLeft="20dp"
+                    android:textSize="11dp"
+                    android:background="@color/colorForm"
+                    android:layout_gravity="center"
+                    android:text='Comprimiendo video ...'
+                    android:textAlignment="textStart"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="RtlCompat" />
+
+            </LinearLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:text="Agregar imagenes"
+                android:id="@+id/button"
+                android:background="@color/colorWhite"
+                android:layout_height="wrap_content" />
+            <Button
+                android:layout_width="match_parent"
+                android:text="Agregar videos"
+                android:id="@+id/button2"
+                android:background="@color/colorWhite"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorWhite"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/labelPersonId3"
+                android:layout_width="match_parent"
+                android:layout_height="22dp"
+                android:paddingLeft="20dp"
+                android:textSize="11dp"
+                android:background="@color/colorForm"
+                android:layout_gravity="center"
+                android:text='Archivos adjuntos'
+                android:textAlignment="textStart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="RtlCompat" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:id="@+id/recyclerView"
+                android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,134 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'io.fabric'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "edu.campusvirtual.tzitlacalli"
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 300000
+        versionName "3.0.0-b01"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+        vectorDrawables.useSupportLibrary = true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    aaptOptions {
+        cruncherEnabled = false
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+        preDexLibraries = false
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+kapt { generateStubs = true }
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:design:28.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'com.android.support:support-v4:28.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    // carousel
+    implementation 'com.synnapps:carouselview:0.1.4'
+    // retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    // Adapter do Retrofit para retornar objetos observáveis
+    implementation "com.squareup.retrofit2:adapter-rxjava:$retrofit_version"
+    // Converter do Retrofit para utilizar o Gson para tratar a resposta do servidor
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    // loading spinner
+    implementation 'com.kaopiz:kprogresshud:1.0.2'
+    // picasso
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    // xml converter
+    implementation('com.squareup.retrofit2:converter-simplexml:2.0.0-beta3') {
+        exclude group: 'xpp3', module: 'xpp3'
+        exclude group: 'stax', module: 'stax-api'
+        exclude group: 'stax', module: 'stax'
+    }
+
+    // fresco
+    implementation "com.facebook.fresco:fresco:1.2.0"
+
+
+    implementation 'com.github.esafirm.android-image-picker:imagepicker:2.0.0'
+    // for experimental rx picker
+    implementation 'com.github.esafirm.android-image-picker:rximagepicker:2.0.0'
+    // If you have a problem with Glide, please use the same Glide version or simply open an issue
+    implementation 'com.github.bumptech.glide:glide:4.5.0'
+    implementation 'com.github.richimf:Alphabetik:1.0.3'
+    implementation 'org.jsoup:jsoup:1.10.2'
+    implementation 'com.afollestad:sectioned-recyclerview:0.5.0'
+    // kapt 'com.android.databinding:compiler:3.2.0-alpha10'
+    implementation 'com.android.support:multidex:1.0.3'
+    // facebook sdk
+    implementation 'com.facebook.android:facebook-android-sdk:4.31.0'
+    // Interceptor para visualizar log logs
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.0'
+    // firebase - google
+    implementation 'com.google.firebase:firebase-core:16.0.3'
+    implementation 'com.google.firebase:firebase-auth:16.0.3'
+    implementation 'com.google.android.gms:play-services-location:15.0.0'
+    implementation 'com.google.android.gms:play-services-maps:15.0.0'
+    implementation 'com.google.android.gms:play-services-places:15.0.0'
+    implementation 'com.google.android.gms:play-services-auth:16.0.0'
+    implementation "com.google.android.gms:play-services-gcm:15.0.0"
+    implementation "com.google.firebase:firebase-messaging:17.3.0"
+    // material text edit
+    implementation 'com.rengwuxian.materialedittext:library:2.1.4'
+    // multi spinner
+    implementation 'com.github.pratikbutani:MultiSelectSpinner:08d324c98'
+    // dialogs
+    implementation 'com.github.sd6352051:NiftyDialogEffects:v1.0.3'
+    implementation 'org.jsoup:jsoup:1.11.3'
+    implementation 'com.iceteck.silicompressorr:silicompressor:2.2.1'
+
+    // image viewer
+    implementation 'com.github.stfalcon:frescoimageviewer:0.5.0'
+    implementation 'net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:2.1.0'
+    implementation('com.crashlytics.sdk.android:crashlytics:2.6.8@aar') {
+        transitive = true;
+    }
+    implementation 'com.github.clans:fab:1.6.4'
+    //calendar
+    implementation 'com.vamsi:customcalendar:1.0.0'
+    implementation 'me.leolin:ShortcutBadger:1.1.4@aar'
+    implementation 'com.jakewharton.threetenabp:threetenabp:1.1.1'
+    implementation 'com.github.prolificinteractive:material-calendarview:2.0.1'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+
+}
+
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'realm-android'

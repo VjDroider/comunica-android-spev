@@ -1,0 +1,52 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:background="#efeff4"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/titleNotifications"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="20dp"
+            android:gravity="center"
+            android:textAlignment="textStart"
+            android:text="NOTIFICACIONES"
+            tools:ignore="RtlCompat" />
+
+        <Switch
+            android:id="@+id/switchNotificaciones"
+            android:layout_width="match_parent"
+            android:background="@color/colorWhite"
+            android:layout_marginTop="1dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:layout_height="38dp"
+            android:text="Recibir notificaciones" />
+        <Switch
+            android:id="@+id/switchEmails"
+            android:layout_width="match_parent"
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp"
+            android:layout_marginTop="1dp"
+            android:background="@color/colorWhite"
+            android:layout_height="38dp"
+            android:text="Recibir Correos" />
+        <Switch
+            android:id="@+id/switchSms"
+            android:layout_width="match_parent"
+            android:layout_marginTop="1dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:background="@color/colorWhite"
+            android:layout_height="38dp"
+            android:text="Recibir Sms" />
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fa_icon_phone">&#xf095;</string>
+    <string name="fa_icon_map_marker">&#xf041;</string>
+    <string name="fa_icon_envelope_o">&#xf003;</string>
+    <string name="fa_icon_facebook">&#xf09a;</string>
+    <string name="fa_icon_google">&#xf1a0;</string>
+    <string name="fa_icon_play">&#xf04b;</string>
+</resources>

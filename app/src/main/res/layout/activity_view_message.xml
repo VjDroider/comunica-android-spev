@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    tools:context=".activities.ViewMessageActivity">
+
+    <TextView
+        android:id="@+id/transmitterNameId"
+        android:layout_width="0dp"
+        android:layout_height="23dp"
+        android:layout_marginBottom="23dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:text="Jara Guzman Luis Angel"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/initialsTransmitterId"
+        app:layout_constraintEnd_toStartOf="@+id/initialsTransmitterId"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/receiverNameId"
+        android:layout_width="0dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:text="Para: Gutierrez Sosa Juanito"
+        app:layout_constraintEnd_toStartOf="@+id/initialsTransmitterId"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/transmitterNameId" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="#ccc"
+        app:layout_constraintBottom_toTopOf="@+id/subjectId"
+        app:layout_constraintTop_toBottomOf="@+id/receiverNameId"
+        tools:layout_editor_absoluteX="0dp"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/initialsTransmitterId"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:layout_marginBottom="14dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_initials"
+        android:text="JA"
+        android:textSize="10dp"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintBottom_toTopOf="@+id/subjectId"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/receiverNameId"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/subjectId"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="11dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:text="GeoNotificacion"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/dateTextId"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/initialsTransmitterId" />
+
+    <TextView
+        android:id="@+id/dateTextId"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:text="25 de enero del 2018 a as 14:32"
+        android:textSize="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/webViewId"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/subjectId" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="#ccc"
+        app:layout_constraintBottom_toTopOf="@+id/webViewId"
+        app:layout_constraintTop_toBottomOf="@+id/dateTextId"
+        tools:layout_editor_absoluteX="0dp"
+        tools:ignore="MissingConstraints" />
+
+    <WebView
+        android:id="@+id/webViewId"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@android:color/transparent"
+        app:layout_constraintTop_toBottomOf="@+id/dateTextId" />
+</androidx.constraintlayout.widget.ConstraintLayout>

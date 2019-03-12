@@ -1,0 +1,50 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:background="#efeff4"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/titleNotifications"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="20dp"
+            android:gravity="center"
+            android:textAlignment="textStart"
+            android:text="FIRMA"
+            tools:ignore="RtlCompat" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:background="@color/colorWhite"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/editTextId"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                android:ems="10"
+                android:inputType="textMultiLine" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:text="Guardar"
+                android:id="@+id/buttonSave"
+                android:background="@color/colorWhite"
+                android:textColor="@color/blue"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

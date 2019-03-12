@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="70dp">
+
+    <TextView
+        android:id="@+id/textViewTitlePaymentId"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="11dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="VISA | MASTERCARD"
+        app:layout_constraintBottom_toTopOf="@+id/textViewPaymentDescriptionId"
+        app:layout_constraintEnd_toStartOf="@+id/imageViewArrow"
+        app:layout_constraintStart_toEndOf="@+id/imageViewPaymentId"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewPaymentDescriptionId"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginTop="0dp"
+        android:text="Pago seguro con tarjeta"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewPaymentId"
+        app:layout_constraintEnd_toStartOf="@+id/imageViewArrow"
+        app:layout_constraintStart_toEndOf="@+id/imageViewPaymentId"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTitlePaymentId" />
+
+    <ImageView
+        android:id="@+id/imageViewArrow"
+        android:layout_width="26dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewPaymentDescriptionId"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textViewPaymentDescriptionId"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/right_arrow" />
+
+    <ImageView
+        android:id="@+id/imageViewPaymentId"
+        android:layout_width="76dp"
+        android:layout_height="75dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/textViewPaymentDescriptionId"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/visamastercard" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
