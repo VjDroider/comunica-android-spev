@@ -22,9 +22,6 @@ import edu.campusvirtual.comunica.library.SessionManager
 import edu.campusvirtual.comunica.models.inbox.Message
 import edu.campusvirtual.comunica.models.inbox.MessageCOM
 import edu.campusvirtual.comunica.R
-import edu.campusvirtual.comunica.services.Service
-import edu.campusvirtual.comunica.services.markMessageAsDelete
-import edu.campusvirtual.comunica.services.markMessageAsRead
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -39,8 +36,9 @@ import edu.campusvirtual.comunica.library.Util
 import edu.campusvirtual.comunica.library.getDefaultConfig
 import edu.campusvirtual.comunica.models.attachment.Attachment
 import edu.campusvirtual.comunica.models.inbox.MessageDB
-import edu.campusvirtual.comunica.services.markMessageAsReadCOM
+import edu.campusvirtual.comunica.services.*
 import io.realm.Realm
+import me.leolin.shortcutbadger.ShortcutBadger
 import org.jsoup.Jsoup
 import java.io.ByteArrayOutputStream
 import java.io.File
@@ -157,6 +155,15 @@ class ViewMessageActivity : AppCompatActivity() {
             if(Constants.backend == Constants.COMUNICA) {
                 Service.shared().markMessageAsReadCOM(this, message?.id_Mensaje!!, completion = {
                     markAsRead(message?.id_Mensaje!!)
+
+                    Service.shared().getUnreadCountMessagesCOM(this, completion = { count ->
+                        //
+                        // setCountInInbox(count)
+                        ShortcutBadger.applyCount(this, count)
+                    }, failure = {
+                        // setCountInInbox()
+                        Log.d("FAIL", "SIIIIII")
+                    })
                 }, failure = {
                     markAsRead(message?.id_Mensaje!!)
                 })

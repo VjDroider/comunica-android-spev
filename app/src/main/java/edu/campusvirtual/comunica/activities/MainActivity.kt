@@ -46,6 +46,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.nav_header_main.*
+import me.leolin.shortcutbadger.ShortcutBadger
 
 class MainActivity : AppCompatActivity(),
     NavigationView.OnNavigationItemSelectedListener, CustomMessagesFragment.CustomMessageListener,
@@ -290,6 +291,15 @@ class MainActivity : AppCompatActivity(),
 
         }, failure = {
             // failure
+        })
+
+        Service.shared().getUnreadCountMessagesCOM(this, completion = { count ->
+            //
+            // setCountInInbox(count)
+            ShortcutBadger.applyCount(this, count)
+        }, failure = {
+            // setCountInInbox()
+            Log.d("FAIL", "SIIIIII")
         })
 
     }

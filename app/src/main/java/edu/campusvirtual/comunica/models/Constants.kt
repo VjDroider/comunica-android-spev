@@ -4,8 +4,9 @@ package edu.campusvirtual.comunica.models
 class Constants {
     companion object {
         // val baseUrl = "http://campusvirtualtesting.azurewebsites.net"
-        val baseUrl = "https://comunica2.azurewebsites.net"
-        val collegeId = 8
+        val baseUrl = "https://comunica.azurewebsites.net"
+        // TODO: ID
+        val collegeId = 10
         // modena 8
         // montevideo 10
         // ermita 11

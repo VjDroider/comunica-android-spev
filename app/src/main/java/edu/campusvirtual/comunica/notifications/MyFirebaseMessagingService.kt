@@ -15,6 +15,7 @@ import com.google.firebase.messaging.RemoteMessage
 import edu.campusvirtual.comunica.activities.HomeActivity
 import edu.campusvirtual.comunica.R
 import edu.campusvirtual.comunica.activities.MainActivity
+import me.leolin.shortcutbadger.ShortcutBadger
 import java.util.*
 
 /**
@@ -55,6 +56,8 @@ class MyFirebaseMessagingService: FirebaseMessagingService() {
 
             notificationManager.createNotificationChannel(mChannel)
         }
+
+        ShortcutBadger.applyCount(this, number)
         val notificationBuilder = NotificationCompat.Builder(this)
                 .setContentText(tema)
                 .setContentTitle(getString(R.string.app_name))

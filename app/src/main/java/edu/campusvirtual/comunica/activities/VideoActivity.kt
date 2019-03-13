@@ -22,6 +22,8 @@ import edu.campusvirtual.comunica.R
 import kotlinx.android.synthetic.main.activity_video.*
 import java.io.File
 
+
+
 class VideoActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,14 +31,12 @@ class VideoActivity : AppCompatActivity() {
         setFullScreen()
         setContentView(R.layout.activity_video)
 
-        // TODO change video here
-        // videoViewId.setVideoPath("andoid.resource://" + packageName + "/" + R.raw.video)
-
-        var path = "android.resources://" + packageName + "/raw/video.mp4"
+        val rawId = resources.getIdentifier("video", "raw", packageName)
+        val path = "android.resource://$packageName/$rawId"
         val video = Uri.parse(path)
         val file = File(path)
 
-        if(file.exists()) {
+        if(rawId != 0) {
             val videoView = findViewById(R.id.videoViewId) as VideoView
             val mc = object: MediaController(this) {
                 override fun dispatchKeyEvent(event: KeyEvent?): Boolean {

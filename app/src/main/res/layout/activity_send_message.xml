@@ -33,7 +33,7 @@
             <com.rengwuxian.materialedittext.MaterialEditText
                 android:id="@+id/temaId"
                 android:layout_width="295dp"
-                android:layout_height="50dp"
+                android:layout_height="70dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"

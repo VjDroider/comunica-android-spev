@@ -1,4 +1,4 @@
-package edu.campusvirtual.tzitlacalli
+package edu.campusvirtual.comunica
 
 import android.content.Context
 import android.util.AttributeSet

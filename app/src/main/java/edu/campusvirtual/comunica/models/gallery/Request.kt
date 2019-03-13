@@ -1,4 +1,4 @@
-package edu.campusvirtual.tzitlacalli.Models.gallery
+package edu.campusvirtual.comunica.models.gallery
 
 /**
  * Created by jonathan on 3/2/18.

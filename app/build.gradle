@@ -10,11 +10,12 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "edu.campusvirtual.tzitlacalli"
+        // TODO: PACKAGE
+        applicationId "edu.campusvirtual.tzitlacallimontevideo"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 300000
-        versionName "3.0.0-b01"
+        versionCode 300001
+        versionName "3.0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true

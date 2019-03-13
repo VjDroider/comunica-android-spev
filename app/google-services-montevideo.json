@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "594605988543",
+    "firebase_url": "https://tzitlacalli-141904.firebaseio.com",
+    "project_id": "tzitlacalli-141904",
+    "storage_bucket": "tzitlacalli-141904.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:594605988543:android:b04fd6924f43fdfd",
+        "android_client_info": {
+          "package_name": "edu.campusvirtual.tzitlacallimontevideo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "594605988543-8a7hpdtdqivic3dqfbt89gbrb1ho1pbc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBp1eWeJk6KU0jclahTDMSBO33qwlCdX2A"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -23,6 +23,7 @@ import edu.campusvirtual.comunica.models.receiver.ReceiverDB
 import edu.campusvirtual.comunica.R
 import edu.campusvirtual.comunica.services.Service
 import edu.campusvirtual.comunica.services.updateDeviceToken
+import me.leolin.shortcutbadger.ShortcutBadger
 
 
 class AccountFragment : Fragment(), View.OnClickListener {
@@ -67,7 +68,7 @@ class AccountFragment : Fragment(), View.OnClickListener {
 
 
                 realm.close()
-
+                ShortcutBadger.applyCount(context!!, 0)
                 val sessionManager = SessionManager(context!!)
                 sessionManager.destroySession()
 
