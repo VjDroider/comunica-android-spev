@@ -58,7 +58,7 @@ fun Service.uploadImage(context: Context, imagePath: String, completion: (String
 
 }
 
-fun Service.uploadVideoCOM(context: Context, file: File, completion: (String) -> Unit, failure: () -> Unit) {
+fun Service.uploadVideoCOM(context: Context, file: File, completion: (String) -> Unit, failure: (String) -> Unit) {
     val retrofit = Service.prepareString(context)
     val service = retrofit.create(FileInterface::class.java)
 
@@ -71,7 +71,7 @@ fun Service.uploadVideoCOM(context: Context, file: File, completion: (String) ->
 
     call.enqueue(object: Callback<String> {
         override fun onFailure(call: Call<String>?, t: Throwable?) {
-            failure()
+            failure(t?.message!!)
         }
 
         override fun onResponse(call: Call<String>?, response: retrofit2.Response<String>?) {
@@ -83,7 +83,7 @@ fun Service.uploadVideoCOM(context: Context, file: File, completion: (String) ->
             var value = ""
 
             if(x == null) {
-                failure()
+                failure(response?.message()!!)
             } else {
                 xpp.setInput(StringReader(x))
                 var eventType = xpp.eventType
@@ -107,7 +107,7 @@ fun Service.uploadVideoCOM(context: Context, file: File, completion: (String) ->
 
 }
 
-fun Service.uploadImageCOM(context: Context, imagePath: String, completion: (String) -> Unit, failure: () -> Unit) {
+fun Service.uploadImageCOM(context: Context, imagePath: String, completion: (String) -> Unit, failure: (String) -> Unit) {
     val retrofit = Service.prepare(context)
     val service = retrofit.create(FileInterface::class.java)
 
@@ -121,7 +121,7 @@ fun Service.uploadImageCOM(context: Context, imagePath: String, completion: (Str
 
     service.postImageCOM(body).enqueue(object: Callback<ResponseBody> {
         override fun onFailure(call: Call<ResponseBody>?, t: Throwable?) {
-            failure()
+            failure(t?.message!!)
         }
 
         override fun onResponse(call: Call<ResponseBody>?, response: retrofit2.Response<ResponseBody>?) {
@@ -158,7 +158,7 @@ fun Service.uploadImageCOM(context: Context, imagePath: String, completion: (Str
                         Util.showAlert(context, "Error", "Hubo un erorr con el servidor, vuelve a intentarlo mas tarde")
                     }
                 }
-                failure()
+                failure(response.message())
             }
         }
 

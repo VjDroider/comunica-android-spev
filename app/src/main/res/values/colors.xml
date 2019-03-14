@@ -2,11 +2,11 @@
 
 <resources>
     <!-- TODO: MODENA -->
-    <!--
+<!--
     <color name="colorPrimary">#e23b49</color>
 
     <color name="colorPrimaryDark">#e23b49</color>
-    -->
+-->
     <color name="colorAccent">#FF4081</color>
 
     <color name="black_overlay">#66000000</color>
@@ -27,50 +27,15 @@
 
     <!-- TODO: ERMITA -->
     <!--
-    <color name="colorPrimary">#1d1e6c</color>
+        <color name="colorPrimary">#1d1e6c</color>
 
-    <color name="colorPrimaryDark">#1d1e6c</color>
-
-    <color name="colorAccent">#FF4081</color>
-
-    <color name="black_overlay">#66000000</color>
-    <color name="colorWhite">#ffffff</color>
-    <color name="colorGoogle">#db4a3c</color>
-    <color name="colorFacebook">#3b569d</color>
-
-    <color name="colorNavigation">#f9f9f9</color>
-    <color name="colorIcon">#ccc</color>
-
-    <color name="light_blue">#59AAFF</color>
-    <color name="blue">#2C7DE3</color>
-    <color name="dark_blue">#1C6AC9</color>
-    <color name="light_gray">#F0F5F5</color>
-    <color name="translucent_white">#80FFFFFF</color>
-    <color name="dark_gray">#243037</color>
-    <color name="colorForm">#efeff4</color>
-    -->
+        <color name="colorPrimaryDark">#1d1e6c</color>
+            -->
 
     <!-- TODO: MONTEVIDEO -->
 
     <color name="colorPrimary">#6ed0e1</color>
     <color name="colorPrimaryDark">#6ed0e1</color>
     <!--
-    <color name="colorAccent">#FF4081</color>
-
-    <color name="black_overlay">#66000000</color>
-    <color name="colorWhite">#ffffff</color>
-    <color name="colorGoogle">#db4a3c</color>
-    <color name="colorFacebook">#3b569d</color>
-
-    <color name="colorNavigation">#f9f9f9</color>
-    <color name="colorIcon">#ccc</color>
-
-    <color name="light_blue">#59AAFF</color>
-    <color name="blue">#2C7DE3</color>
-    <color name="dark_blue">#1C6AC9</color>
-    <color name="light_gray">#F0F5F5</color>
-    <color name="translucent_white">#80FFFFFF</color>
-    <color name="dark_gray">#243037</color>
-    <color name="colorForm">#efeff4</color>
-    -->
+       -->
 </resources>

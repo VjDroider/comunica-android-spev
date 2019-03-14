@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.crashlytics.android.answers.Answers
+import com.crashlytics.android.answers.ContentViewEvent
 import com.kaopiz.kprogresshud.KProgressHUD
 import com.vamsi.customcalendar.CustomCalendar
 import com.vamsi.customcalendar.Helpers.Badge
@@ -29,6 +31,7 @@ import edu.campusvirtual.comunica.models.calendar.Event
 import edu.campusvirtual.comunica.models.calendar.EventCOM
 
 import edu.campusvirtual.comunica.R
+import edu.campusvirtual.comunica.library.SessionManager
 import edu.campusvirtual.comunica.services.Service
 import edu.campusvirtual.comunica.services.getEvents
 import edu.campusvirtual.comunica.services.getEventsCOM
@@ -56,16 +59,25 @@ class CalendarFragment : Fragment(), ClickInterface, SwipeRefreshLayout.OnRefres
     var mutableMapEvents = mutableMapOf<Date, ArrayList<EventCOM>>()
     var swipeRefreshLayout: SwipeRefreshLayout? = null
     var spin: KProgressHUD? = null
+    var session:SessionManager? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         var v = inflater.inflate(R.layout.fragment_calendar, container, false)
 
+        session = SessionManager(context!!)
         setupCalendar(v)
         setupRecyclerView(v)
         getEvents()
         setupSwipeRefresh(v)
+
+        Answers.getInstance().logContentView(
+            ContentViewEvent()
+                .putContentName("Eventos")
+                .putContentType("Calendar")
+                .putContentId(session!!.getFullname())
+        )
 
         return v
     }

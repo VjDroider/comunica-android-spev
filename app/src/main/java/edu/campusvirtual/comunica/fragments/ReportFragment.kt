@@ -21,6 +21,8 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.crashlytics.android.answers.Answers
+import com.crashlytics.android.answers.SearchEvent
 import com.kaopiz.kprogresshud.KProgressHUD
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
@@ -39,6 +41,7 @@ import edu.campusvirtual.comunica.adapters.ReportAdapter
 import edu.campusvirtual.comunica.decorators.EventDecorator
 import edu.campusvirtual.comunica.decorators.MySelectorDecorator
 import edu.campusvirtual.comunica.decorators.OneDayDecorator
+import edu.campusvirtual.comunica.library.SessionManager
 import edu.campusvirtual.comunica.library.Util
 import edu.campusvirtual.comunica.models.Constants
 import edu.campusvirtual.comunica.models.calendar.EventCOM
@@ -74,6 +77,7 @@ class ReportFragment : Fragment(), ClickInterface, SwipeRefreshLayout.OnRefreshL
     var mutableMapEvents = mutableMapOf<Date, ArrayList<Report>>()
     var swipeRefreshLayout: SwipeRefreshLayout? = null
     var spin: KProgressHUD? = null
+    var session :SessionManager? = null
 
     var start:String = ""
     var end:String = ""
@@ -90,6 +94,7 @@ class ReportFragment : Fragment(), ClickInterface, SwipeRefreshLayout.OnRefreshL
         // Inflate the layout for this fragment
         var v = inflater.inflate(R.layout.fragment_report, container, false)
 
+        session = SessionManager(context!!)
         setupCalendar(v)
         setupRecyclerView(v)
         getEvents()
@@ -111,6 +116,7 @@ class ReportFragment : Fragment(), ClickInterface, SwipeRefreshLayout.OnRefreshL
             val calendar = Calendar.getInstance();
             // eventss.add(EventDay(calendar, R.drawable.ic_arrow_back));
 
+            Answers.getInstance().logSearch(SearchEvent().putCustomAttribute("start", start).putCustomAttribute("end", end).putCustomAttribute("who", session!!.getFullname()))
             Service.shared().getReportsCOM(context!!, start, end, completion = {
                 events.clear()
                 events.addAll(it!!)

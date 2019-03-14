@@ -17,6 +17,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.crashlytics.android.answers.Answers
+import com.crashlytics.android.answers.ContentViewEvent
+import com.crashlytics.android.answers.ShareEvent
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.kaopiz.kprogresshud.KProgressHUD
 import com.stfalcon.frescoimageviewer.ImageViewer
@@ -29,6 +32,9 @@ import edu.campusvirtual.comunica.models.attachment.Attachment
 import edu.campusvirtual.comunica.models.gallery.Album
 import edu.campusvirtual.comunica.models.gallery.Photo
 import edu.campusvirtual.comunica.R
+import edu.campusvirtual.comunica.library.SessionManager
+import edu.campusvirtual.comunica.models.inbox.Message
+import edu.campusvirtual.comunica.models.inbox.MessageCOM
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -40,6 +46,8 @@ class AttachmentsActivity : AppCompatActivity() {
     var recycler: RecyclerView? = null
     var layoutManager: GridLayoutManager? = null
     var attachments = ArrayList<Attachment>()
+    var session:SessionManager? = null
+    var msg: MessageCOM? = null
 
     private var globalMenu: Menu? = null
 
@@ -48,10 +56,13 @@ class AttachmentsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_attachments)
 
         attachments = intent.getSerializableExtra("attachments") as ArrayList<Attachment>
+        msg = intent.getSerializableExtra("msg") as MessageCOM
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 101)
         }
+
+        session = SessionManager(this)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
@@ -88,6 +99,8 @@ class AttachmentsActivity : AppCompatActivity() {
             }
         }
 
+        Answers.getInstance().logContentView(ContentViewEvent().putContentId(session!!.getFullname()).putContentType(msg!!.Tema).putContentName("Attachments"))
+
         recycler!!.adapter = adapter
         recycler!!.layoutManager = layoutManager
 
@@ -110,9 +123,18 @@ class AttachmentsActivity : AppCompatActivity() {
             uris.add(Uri.fromFile(file));
         }
 
+        Answers.getInstance().logShare(
+            ShareEvent()
+                .putMethod("share")
+                .putContentId(session!!.getFullname())
+                .putContentName("share " + files.size + " files")
+                .putContentType("attachments")
+        )
+
         val intent = Intent(Intent.ACTION_SEND_MULTIPLE);
         intent.setType("*/*");
         intent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, uris);
+
         startActivity(Intent.createChooser(intent, "Titulo"));
     }
 

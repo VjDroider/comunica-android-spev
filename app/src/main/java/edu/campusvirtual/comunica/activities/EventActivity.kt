@@ -22,7 +22,11 @@ import android.content.ContentResolver
 import android.content.ContentValues
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
+import com.crashlytics.android.answers.Answers
+import com.crashlytics.android.answers.ContentViewEvent
+import com.crashlytics.android.answers.ShareEvent
 import com.kaopiz.kprogresshud.KProgressHUD
+import edu.campusvirtual.comunica.library.SessionManager
 import edu.campusvirtual.comunica.library.Util
 import edu.campusvirtual.comunica.models.calendar.EventCOM
 import edu.campusvirtual.comunica.models.configuration.Configuration
@@ -36,10 +40,19 @@ class EventActivity : AppCompatActivity(), View.OnTouchListener {
     var event: EventCOM? = null
     var spin: KProgressHUD? = null
 
+    var session: SessionManager? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_event)
+        session = SessionManager(this)
 
+        Answers.getInstance().logContentView(
+            ContentViewEvent()
+                .putContentName("VerEvento")
+                .putContentType(event!!.title)
+                .putContentId(session!!.getFullname())
+        )
         event = intent.getSerializableExtra("Event") as EventCOM
         setupView()
     }
@@ -134,6 +147,12 @@ class EventActivity : AppCompatActivity(), View.OnTouchListener {
         }, failure = {
             Log.d("FAILLL", "No se pudo")
         })
+
+        Answers.getInstance().logShare(ShareEvent()
+            .putMethod("Calendar")
+            .putContentName(event!!.title)
+            .putContentType("event")
+            .putContentId(event!!.id_evento.toString()));
 
         val intent = Intent(Intent.ACTION_INSERT)
 

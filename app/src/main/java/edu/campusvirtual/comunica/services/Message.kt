@@ -282,19 +282,19 @@ fun Service.sentMessage(context: Context, body: Request, completion: () -> Unit,
     })
 }
 
-fun Service.sentMessageCOM(context: Context, body: RequestCOM, completion: () -> Unit, failure: () -> Unit) {
+fun Service.sentMessageCOM(context: Context, body: RequestCOM, completion: () -> Unit, failure: (String) -> Unit) {
     var retrofit = Service.prepare(context)
     var service = retrofit.create(MessageInterface::class.java)
 
     service.sendMessageCOM(body).enqueue(object: Callback<ResponseSend> {
         override fun onFailure(call: Call<ResponseSend>?, t: Throwable?) {
-            failure()
+            failure(t?.message!!)
         }
 
         override fun onResponse(call: Call<ResponseSend>?, response: retrofit2.Response<ResponseSend>?) {
             if(response?.isSuccessful!!) {
                 if(response.body().success == "fail") {
-                    failure()
+                    failure(response.body().success)
                 } else {
                     completion()
                 }
@@ -307,7 +307,7 @@ fun Service.sentMessageCOM(context: Context, body: RequestCOM, completion: () ->
                         // Util.showAlert(context, "Error", "Hubo un erorr con el servidor, vuelve a intentarlo mas tarde")
                     }
                 }
-                failure()
+                failure(response.message())
             }
         }
 

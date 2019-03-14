@@ -14,8 +14,8 @@ android {
         applicationId "edu.campusvirtual.tzitlacallimontevideo"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 300001
-        versionName "3.0.1"
+        versionCode 300002
+        versionName "3.0.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true

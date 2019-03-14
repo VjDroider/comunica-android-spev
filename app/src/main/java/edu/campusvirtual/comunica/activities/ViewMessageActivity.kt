@@ -99,8 +99,11 @@ class ViewMessageActivity : AppCompatActivity() {
                 Util.downloadAssetByName(this, src, name, completion = {
                     var file = File(it)
                     val thumb = ThumbnailUtils.createVideoThumbnail(file.absolutePath, MediaStore.Video.Thumbnails.FULL_SCREEN_KIND)
-
-                    attachments.add(Attachment(src, true, preview = getImageUri(this, thumb)))
+                    if(thumb != null) {
+                        attachments.add(Attachment(src, true, preview = getImageUri(this, thumb)))
+                    } else {
+                        attachments.add(Attachment(src, true, ""))
+                    }
 
                 }, failure = {
                     var x = ""
@@ -224,7 +227,9 @@ class ViewMessageActivity : AppCompatActivity() {
         webView!!.getSettings().setSupportZoom(true)
         webView!!.getSettings().setLoadWithOverviewMode(true)
         webView!!.getSettings().setUseWideViewPort(true)
+        webView!!.settings.mediaPlaybackRequiresUserGesture = false
         webView!!.getSettings().setBuiltInZoomControls(true)
+        webView!!.settings.pluginState = WebSettings.PluginState.ON
         webView!!.setInitialScale(1)
 
         var msg:String = message?.Mensaje!!
@@ -238,7 +243,7 @@ class ViewMessageActivity : AppCompatActivity() {
         if(myHead == "<head></head>") {
             myHead = "<head>" +
                          "<style>" +
-                           "img { width: 100%; left: 50%;position: relative;max-width: 100%;-webkit-transform: translateX(-50%);-moz-transform: translateX(-50%);-ms-transform: translateX(-50%);-o-transform: translateX(-50%);transform: translateX(-50%);}" +
+                           "video {width: 100%;} img { width: 100%; left: 50%;position: relative;max-width: 100%;-webkit-transform: translateX(-50%);-moz-transform: translateX(-50%);-ms-transform: translateX(-50%);-o-transform: translateX(-50%);transform: translateX(-50%);}" +
                          "</style>" +
                          "<meta name=\"viewport\" content=\"initial-scale=1, width=device-width, height=device-height, viewport-fit=cover\">" +
                      "</head>\n"
@@ -313,6 +318,7 @@ class ViewMessageActivity : AppCompatActivity() {
             R.id.attachmentId -> {
                 val intent = Intent(this, AttachmentsActivity::class.java)
                 intent.putExtra("attachments", attachments)
+                intent.putExtra("msg", message)
                 startActivity(intent)
             }
         }

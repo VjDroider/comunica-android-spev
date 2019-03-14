@@ -51,7 +51,7 @@
     <!-- TODO: LAUNCHER -->
     <application
             android:allowBackup="true"
-            android:hardwareAccelerated="false"
+            android:hardwareAccelerated="true"
             android:icon="@mipmap/ic_launcher_montevideo"
             android:label="@string/app_name"
             android:largeHeap="true"

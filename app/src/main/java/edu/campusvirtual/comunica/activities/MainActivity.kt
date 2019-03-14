@@ -18,6 +18,8 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import com.crashlytics.android.Crashlytics
+import com.crashlytics.android.answers.Answers
+import com.crashlytics.android.answers.CustomEvent
 import com.github.clans.fab.FloatingActionButton
 import com.google.android.gms.location.*
 import com.google.android.gms.common.ConnectionResult
@@ -469,6 +471,7 @@ class MainActivity : AppCompatActivity(),
             body.id_Colegio = Constants.collegeId
 
             Service.shared().sentMessageCOM(applicationContext, body, completion = {
+                Answers.getInstance().logCustom(CustomEvent("SendGeonotification").putCustomAttribute("from", sessionManager?.getFullname()).putCustomAttribute("type", body.mensaje))
                 Util.showAlert(this, "Bien", "Tu mensaje ya fue enviado a las misses")
             }, failure = {
                 Util.showAlert(this, "Alerta", "No pudimos entregar el mensaje, intenta de nuevo")

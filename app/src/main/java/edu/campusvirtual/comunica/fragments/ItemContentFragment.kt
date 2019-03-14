@@ -12,11 +12,14 @@ import android.webkit.WebSettings
 import android.webkit.WebView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.crashlytics.android.answers.Answers
+import com.crashlytics.android.answers.ContentViewEvent
 import kotlinx.android.synthetic.main.fragment_item_content.*
 import edu.campusvirtual.comunica.models.item.Item
 import edu.campusvirtual.comunica.models.item.ItemCOM
 
 import edu.campusvirtual.comunica.R
+import edu.campusvirtual.comunica.library.SessionManager
 import org.jsoup.Jsoup
 
 /**
@@ -31,6 +34,7 @@ class ItemContentFragment : Fragment() {
 
     lateinit var item: ItemCOM
     lateinit var contentTextView: WebView
+    var session:SessionManager? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +45,7 @@ class ItemContentFragment : Fragment() {
         // Inflate the layout for this fragment
         val x = inflater.inflate(R.layout.fragment_item_content, container, false)
 
+        session = SessionManager(context!!)
         contentTextView = x.findViewById(R.id.textHtmlId)
 
         var msg:String = item.contenido
@@ -66,6 +71,7 @@ class ItemContentFragment : Fragment() {
                 body.toString() +
                 "</html>"
 
+        Answers.getInstance().logContentView(ContentViewEvent().putContentName(item.menuItemTexto).putContentType("Item").putContentId(session!!.getFullname()))
         contentTextView.settings.loadWithOverviewMode = true
         contentTextView.settings.useWideViewPort = true
         contentTextView.settings.javaScriptEnabled = true

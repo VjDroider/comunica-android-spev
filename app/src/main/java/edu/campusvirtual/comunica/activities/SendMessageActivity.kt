@@ -43,6 +43,7 @@ import android.os.Environment
 import android.provider.DocumentsContract
 import android.provider.MediaStore
 import android.view.View
+import android.webkit.MimeTypeMap
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -53,6 +54,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.androidbuts.multispinnerfilter.KeyPairBoolData
 import com.androidbuts.multispinnerfilter.MultiSpinnerSearch
 import com.androidbuts.multispinnerfilter.SpinnerListener
+import com.crashlytics.android.answers.Answers
+import com.crashlytics.android.answers.CustomEvent
 import com.esafirm.imagepicker.features.ReturnMode
 import com.iceteck.silicompressorr.SiliCompressor
 import org.xmlpull.v1.XmlPullParser
@@ -83,6 +86,7 @@ class SendMessageActivity : AppCompatActivity() {
     var queueVideos:ArrayList<String> = arrayListOf()
     var toast:Toast? = null
 
+    var session:SessionManager? = null
     lateinit var recycler: RecyclerView
     lateinit var adapter: ImageAdapter
     var listArray: ArrayList<KeyPairBoolData> = arrayListOf()
@@ -105,7 +109,7 @@ class SendMessageActivity : AppCompatActivity() {
         loadingView2 = findViewById(R.id.layout_loading2)
         recycler = findViewById(R.id.recyclerView)
         recycler.layoutManager = layoutManager
-
+        session = SessionManager(this)
         adapter = ImageAdapter(this, images) { item ->
 
             var builder = AlertDialog.Builder(this)
@@ -328,10 +332,7 @@ class SendMessageActivity : AppCompatActivity() {
     }
 
     fun showErrorAtUploadFile() {
-        toast?.cancel()
-        toast?.setText("Error al subir el archivo")
-        toast?.duration = Toast.LENGTH_SHORT
-        toast?.show()
+        Toast.makeText(this, "Error al subir el archivo", Toast.LENGTH_SHORT).show()
     }
 
     fun getDataColumn(context: Context, uri: Uri, selection: String?,
@@ -458,6 +459,12 @@ class SendMessageActivity : AppCompatActivity() {
             queueImages.removeAt(0)
             setupLoading()
             uploadQueue()
+            Answers.getInstance().logCustom(
+                CustomEvent("UPLOAD_IMAGE")
+                    .putCustomAttribute("count", "1")
+                    .putCustomAttribute("who", session!!.getFullname())
+                    .putCustomAttribute("msg", it)
+            )
             Service.shared().saveLog(this, "SUCCESS_UPLOAD_IMAGE", completion = {
 
             }, failure = {
@@ -469,6 +476,12 @@ class SendMessageActivity : AppCompatActivity() {
             }, failure = {
 
             })
+            Answers.getInstance().logCustom(
+                CustomEvent("FAIL_UPLOAD_IMAGE")
+                    .putCustomAttribute("count", "1")
+                    .putCustomAttribute("who", session!!.getFullname())
+                    .putCustomAttribute("msg", it)
+            )
             Service.shared().uploadImageCOM(this, path, completion = {
                 images.add(it)
                 isVideo.add(null)
@@ -479,6 +492,12 @@ class SendMessageActivity : AppCompatActivity() {
                 queueImages.removeAt(0)
                 setupLoading()
                 uploadQueue()
+                Answers.getInstance().logCustom(
+                    CustomEvent("UPLOAD_IMAGE")
+                        .putCustomAttribute("count", "2")
+                        .putCustomAttribute("who", session!!.getFullname())
+                        .putCustomAttribute("msg", it)
+                )
                 Service.shared().saveLog(this, "SUCCESS2_UPLOAD_IMAGE", completion = {
 
                 }, failure = {
@@ -491,6 +510,12 @@ class SendMessageActivity : AppCompatActivity() {
                 queueImages.removeAt(0)
                 setupLoading()
                 uploadQueue()
+                Answers.getInstance().logCustom(
+                    CustomEvent("FAIL_UPLOAD_IMAGE")
+                        .putCustomAttribute("count", "2")
+                        .putCustomAttribute("who", session!!.getFullname())
+                        .putCustomAttribute("msg", it)
+                )
                 Service.shared().saveLog(this, "FAILURE_UPLOAD_IMAGE", completion = {
 
                 }, failure = {
@@ -560,6 +585,12 @@ class SendMessageActivity : AppCompatActivity() {
                         }, failure = {
 
                         })
+                        Answers.getInstance().logCustom(
+                            CustomEvent("FAIL_UPLOAD_VIDEO")
+                                .putCustomAttribute("count", "1")
+                                .putCustomAttribute("who", session!!.getFullname())
+                                .putCustomAttribute("msg", it)
+                        )
                         Service.shared().uploadVideoCOM(this, file = file2, completion = {
                             isLoading.removeAt(0)
                             isVideo.add(it)
@@ -581,6 +612,12 @@ class SendMessageActivity : AppCompatActivity() {
                             setupCompriming()
                             uploadQueue()
                             deleteImage(_path)
+                            Answers.getInstance().logCustom(
+                                CustomEvent("FAIL_UPLOAD_VIDEO")
+                                    .putCustomAttribute("count", "2")
+                                    .putCustomAttribute("who", session!!.getFullname())
+                                    .putCustomAttribute("msg", it)
+                            )
                             Service.shared().saveLog(this, "FAILURE_UPLOAD_VIDEO", completion = {
 
                             }, failure = {
@@ -691,7 +728,8 @@ class SendMessageActivity : AppCompatActivity() {
         for(i in 0..images.size - 1) {
             if(isVideo.get(i) != null) {
                 var video = images.get(i)
-                val tag = "<video src='" + isVideo.get(i) + "' class='vi' preload='none' controls='controls'></video><br/><br/>"
+                var mime =  MimeTypeMap.getFileExtensionFromUrl(isVideo.get(i))
+                val tag = "<video src='" + isVideo.get(i) + "' class='vi' preload='none' controls='controls'><source src='" + isVideo.get(i) + "'><source src='" + isVideo.get(i) + "' type='"+ mime +"'>Your browser does not support the video tag.</video><br/><br/>"
                 msg = msg + tag
             } else {
                 var image = images.get(i)
@@ -749,6 +787,7 @@ class SendMessageActivity : AppCompatActivity() {
 
             })
             Service.shared().sentMessageCOM(applicationContext, body, completion = {
+                Answers.getInstance().logCustom(CustomEvent("SendMessage").putCustomAttribute("to", body.ids_lista_distribucion).putCustomAttribute("from", session.getFullname()).putCustomAttribute("subject", body.tema))
                 Util.showAlert(this, "Exito", "Mensaje enviado correctamente")
                 stopLoading()
                 Service.shared().saveLog(this, "SUCCESS_SEND_MESSAE", completion = {
@@ -756,9 +795,9 @@ class SendMessageActivity : AppCompatActivity() {
                 }, failure = {
 
                 })
-            }, failure = {
+            }, failure = { msg ->
                 Util.showAlert(this, "Error", "Error al enviar el mensaje")
-
+                Answers.getInstance().logCustom(CustomEvent("FailSendMessage").putCustomAttribute("to", body.ids_lista_distribucion).putCustomAttribute("from", session.getFullname()).putCustomAttribute("subject", body.tema).putCustomAttribute("msg", msg))
                 stopLoading()
                 Service.shared().saveLog(this, "FAILURE_SEND_MESSAE", completion = {
 

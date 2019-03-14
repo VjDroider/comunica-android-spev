@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.*
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -330,39 +331,43 @@ class CustomMessagesFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener 
     }
 
     fun sync() {
-        Realm.init(context!!)
+        try {
+            Realm.init(context!!)
 
 
 
-        val config = getDefaultConfig("messages.realm")
-        val realm = Realm.getInstance(config)
-        // 1 - eliminar mensajes del mailbox X
-        realm.beginTransaction()
-        val results = realm.where(MessageDB::class.java).contains("mailbox", mailbox!!).findAll()
-        // results.deleteAllFromRealm()
-        // 2 - agregó los nuevos elementos a la base de datos
+            val config = getDefaultConfig("messages.realm")
+            val realm = Realm.getInstance(config)
+            // 1 - eliminar mensajes del mailbox X
+            realm.beginTransaction()
+            val results = realm.where(MessageDB::class.java).contains("mailbox", mailbox!!).findAll()
+            // results.deleteAllFromRealm()
+            // 2 - agregó los nuevos elementos a la base de datos
 
-        for(message in items) {
-            var exists = false
-            for(m in results!!) {
-                if(m.id == message.id_Mensaje) {
-                    exists = true
+            for(message in items) {
+                var exists = false
+                for(m in results!!) {
+                    if(m.id == message.id_Mensaje) {
+                        exists = true
+                    }
+                }
+
+                if(!exists) {
+                    realm.copyToRealm(message.messageToDb(mailbox!!))
                 }
             }
 
-            if(!exists) {
-                realm.copyToRealm(message.messageToDb(mailbox!!))
-            }
+            var session = SessionManager(context!!)
+            var date = Calendar.getInstance().time
+            var x = getDateString((date))!!
+            session.saveLastGet(x)
+
+            realm.commitTransaction()
+
+            getMessagesDB()
+        } catch(e: Exception) {
+            Toast.makeText(context!!, "Error al sincronizar los mensajes", Toast.LENGTH_SHORT).show()
         }
-
-        var session = SessionManager(context!!)
-        var date = Calendar.getInstance().time
-        var x = getDateString((date))!!
-        session.saveLastGet(x)
-
-        realm.commitTransaction()
-
-        getMessagesDB()
     }
 
     fun getMessagesDB() {
