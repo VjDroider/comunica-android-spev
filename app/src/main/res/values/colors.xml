@@ -2,11 +2,12 @@
 
 <resources>
     <!-- TODO: MODENA -->
-<!--
+
     <color name="colorPrimary">#e23b49</color>
 
     <color name="colorPrimaryDark">#e23b49</color>
--->
+    <!--
+        -->
     <color name="colorAccent">#FF4081</color>
 
     <color name="black_overlay">#66000000</color>
@@ -33,9 +34,9 @@
             -->
 
     <!-- TODO: MONTEVIDEO -->
-
-    <color name="colorPrimary">#6ed0e1</color>
-    <color name="colorPrimaryDark">#6ed0e1</color>
     <!--
-       -->
+       <color name="colorPrimary">#6ed0e1</color>
+       <color name="colorPrimaryDark">#6ed0e1</color>
+
+          -->
 </resources>

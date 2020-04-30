@@ -11,7 +11,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         // TODO: PACKAGE
-        applicationId "edu.campusvirtual.tzitlacallimontevideo"
+        applicationId "edu.campusvirtual.tzitlacalli"
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 300002
@@ -59,6 +59,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
 
     // carousel
     implementation 'com.synnapps:carouselview:0.1.4'

@@ -1,39 +1,152 @@
 {
   "project_info": {
-    "project_number": "594605988543",
-    "firebase_url": "https://tzitlacalli-141904.firebaseio.com",
-    "project_id": "tzitlacalli-141904",
-    "storage_bucket": "tzitlacalli-141904.appspot.com"
+    "project_number": "249330905417",
+    "firebase_url": "https://albert-camus-91a8d.firebaseio.com",
+    "project_id": "albert-camus-91a8d",
+    "storage_bucket": "albert-camus-91a8d.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:594605988543:android:b04fd6924f43fdfd",
+        "mobilesdk_app_id": "1:249330905417:android:68c4feeafad2d51a15aa98",
         "android_client_info": {
-          "package_name": "edu.campusvirtual.tzitlacallimontevideo"
+          "package_name": "edu.campusvirtual.tzitlacalli"
         }
       },
       "oauth_client": [
         {
-          "client_id": "594605988543-8a7hpdtdqivic3dqfbt89gbrb1ho1pbc.apps.googleusercontent.com",
+          "client_id": "249330905417-o29llhao3mgfo7k88fqjfkidb3rlhaaj.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBp1eWeJk6KU0jclahTDMSBO33qwlCdX2A"
+          "current_key": "AIzaSyD4fgxCcE4tdwuchoiXAGg5WqV7CNPcExY"
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
+          "other_platform_oauth_client": [
+            {
+              "client_id": "249330905417-o29llhao3mgfo7k88fqjfkidb3rlhaaj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "249330905417-3c2jnc7dgila935ovsa9mfdrr28buekq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "mx.campusvirtual.ameyali"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:249330905417:android:648957a92724b859",
+        "android_client_info": {
+          "package_name": "mx.campusvirtual.ameyali"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "249330905417-o29llhao3mgfo7k88fqjfkidb3rlhaaj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4fgxCcE4tdwuchoiXAGg5WqV7CNPcExY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "249330905417-o29llhao3mgfo7k88fqjfkidb3rlhaaj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "249330905417-3c2jnc7dgila935ovsa9mfdrr28buekq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "mx.campusvirtual.ameyali"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:249330905417:android:472930516e8349e4",
+        "android_client_info": {
+          "package_name": "mx.campusvirtual.camus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "249330905417-o29llhao3mgfo7k88fqjfkidb3rlhaaj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4fgxCcE4tdwuchoiXAGg5WqV7CNPcExY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "249330905417-o29llhao3mgfo7k88fqjfkidb3rlhaaj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "249330905417-3c2jnc7dgila935ovsa9mfdrr28buekq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "mx.campusvirtual.ameyali"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:249330905417:android:e1c54a6fb1b9516c15aa98",
+        "android_client_info": {
+          "package_name": "mx.campusvirtual.dai"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "249330905417-o29llhao3mgfo7k88fqjfkidb3rlhaaj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4fgxCcE4tdwuchoiXAGg5WqV7CNPcExY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "249330905417-o29llhao3mgfo7k88fqjfkidb3rlhaaj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "249330905417-3c2jnc7dgila935ovsa9mfdrr28buekq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "mx.campusvirtual.ameyali"
+              }
+            }
+          ]
         }
       }
     }

@@ -6,7 +6,7 @@ class Constants {
         // val baseUrl = "http://campusvirtualtesting.azurewebsites.net"
         val baseUrl = "https://comunica.azurewebsites.net"
         // TODO: ID
-        val collegeId = 10
+        val collegeId = 8
         // modena 8
         // montevideo 10
         // ermita 11
